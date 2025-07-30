@@ -14,13 +14,19 @@ async function bootstrap() {
   );
   app.enableCors({
     credentials: true,
-    origin: ['http://localhost:3003'],
+    origin: [process.env.FRONTEND_URL || 'http://localhost:3003'],
   });
   app.use(cookieParser());
 
   // CSRF保護の設定
   const { doubleCsrfProtection } = doubleCsrf({
-    getSecret: () => process.env.CSRF_SECRET || 'default-csrf-secret',
+    getSecret: () => {
+      const secret = process.env.CSRF_SECRET;
+      if (!secret) {
+        throw new Error('CSRF_SECRETの環境変数が設定されてません');
+      }
+      return secret;
+    },
     getSessionIdentifier: (req) => req.ip || 'anonymous', // セッションがない場合はIPアドレスを使用
     cookieName:
       process.env.NODE_ENV === 'production'

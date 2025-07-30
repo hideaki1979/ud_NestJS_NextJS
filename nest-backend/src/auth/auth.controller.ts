@@ -43,7 +43,7 @@ export class AuthController {
     const jwt = await this.authService.login(dto);
     res.cookie('access_token', jwt.accessToken, {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'none',
       path: '/',
     });
@@ -52,7 +52,7 @@ export class AuthController {
   }
 
   @HttpCode(HttpStatus.OK)
-  @Post('/logout')
+  @Post('logout')
   logout(@Req() req: Request, @Res({ passthrough: true }) res: Response): Msg {
     res.clearCookie('access_token');
 

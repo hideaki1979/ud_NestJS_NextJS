@@ -62,7 +62,11 @@ export class AuthService {
 
       return this.generateJwt(user.id, user.email);
     } catch (err) {
-      console.error('ログインエラー発生：', err);
+      if (process.env.NODE_ENV !== 'production') {
+        console.error('ログインエラー発生：', err);
+      } else {
+        console.error('ログインエラー発生：');
+      }
       throw err;
     }
   }
