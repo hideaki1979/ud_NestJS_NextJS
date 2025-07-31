@@ -13,7 +13,7 @@ export class TodoService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getTasks(userId: number): Promise<Task[]> {
-    return await this.prisma.task.findMany({
+    return this.prisma.task.findMany({
       where: {
         userId,
       },
