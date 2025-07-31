@@ -74,20 +74,15 @@ export class TodoService {
   }
 
   async deleteTaskById(userId: number, taskId: number): Promise<void> {
-    const task = await this.prisma.task.findUnique({
+    const result = await this.prisma.task.deleteMany({
       where: {
         id: taskId,
+        userId,
       },
     });
 
-    if (!task || task.userId !== userId) {
+    if (result.count === 0) {
       throw new ForbiddenException('削除権限がありません');
     }
-
-    await this.prisma.task.delete({
-      where: {
-        id: taskId,
-      },
-    });
   }
 }
