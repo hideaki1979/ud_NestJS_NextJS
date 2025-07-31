@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Req,
-  UseGuards,
-  UnauthorizedException,
-  Patch,
-  Body,
-} from '@nestjs/common';
+import { Controller, Get, Req, UseGuards, Patch, Body } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
@@ -20,9 +12,6 @@ export class UserController {
 
   @Get()
   getLoginUser(@Req() req: Request): UserPayload {
-    if (!req.user) {
-      throw new UnauthorizedException('認証されていません');
-    }
     return req.user;
   }
 

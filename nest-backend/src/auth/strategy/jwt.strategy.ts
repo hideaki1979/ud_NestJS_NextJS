@@ -14,13 +14,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
-        (req: Request) => {
-          let jwt: string | null = null;
-          if (req && req.cookies) {
-            jwt = req.cookies['access_token'] as string;
-          }
-          return jwt;
-        },
+        (req: Request) => (req?.cookies?.['access_token'] as string) ?? null,
       ]),
       ignoreExpiration: false,
       secretOrKey: config.get('JWT_SECRET') as string,
@@ -42,7 +36,9 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { hashedPassword, ...userWithoutPassword } = user;
-    return userWithoutPassword;
+    // const { hashedPassword, ...userWithoutPassword } = user;
+    // return userWithoutPassword;
+    const { id, email, nickname, createdAt, updatedAt } = user;
+    return { id, email, nickname, createdAt, updatedAt };
   }
 }
