@@ -52,22 +52,24 @@ export class TodoService {
     taskId: number,
     dto: UpdateTaskDto,
   ): Promise<Task> {
-    const task = await this.prisma.task.findUnique({
-      where: {
-        id: taskId,
-      },
-    });
+    return this.prisma.$transaction(async (ts) => {
+      const task = await ts.task.findUnique({
+        where: {
+          id: taskId,
+        },
+      });
 
-    if (!task || task.userId !== userId)
-      throw new ForbiddenException('更新権限がありません');
+      if (!task || task.userId !== userId)
+        throw new ForbiddenException('更新権限がありません');
 
-    return await this.prisma.task.update({
-      where: {
-        id: taskId,
-      },
-      data: {
-        ...dto,
-      },
+      return ts.task.update({
+        where: {
+          id: taskId,
+        },
+        data: {
+          ...dto,
+        },
+      });
     });
   }
 

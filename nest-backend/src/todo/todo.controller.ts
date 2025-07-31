@@ -26,7 +26,7 @@ export class TodoController {
 
   @Get()
   async getTasks(@Req() req: Request): Promise<Task[]> {
-    return await this.todoService.getTasks(req.user.id);
+    return this.todoService.getTasks(req.user.id);
   }
 
   @Get(':id')
@@ -34,7 +34,7 @@ export class TodoController {
     @Req() req: Request,
     @Param('id', ParseIntPipe) taskId: number,
   ): Promise<Task> {
-    return await this.todoService.getTaskById(req.user.id, taskId);
+    return this.todoService.getTaskById(req.user.id, taskId);
   }
 
   @Post()
@@ -42,7 +42,7 @@ export class TodoController {
     @Req() req: Request,
     @Body() dto: CreateTaskDto,
   ): Promise<Task> {
-    return await this.todoService.createTask(req.user.id, dto);
+    return this.todoService.createTask(req.user.id, dto);
   }
 
   @Patch(':id')
