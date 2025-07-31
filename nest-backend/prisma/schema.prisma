@@ -18,6 +18,7 @@ model User {
   id             Int      @id @default(autoincrement())
   email          String   @unique @db.VarChar(255)
   hashedPassword String   @db.VarChar(255)
+  nickname       String?  @db.VarChar(255)
   createdAt      DateTime @default(now()) @db.Timestamp(0)
   updatedAt      DateTime @updatedAt @db.Timestamp(0)
   Tasks          Task[]
