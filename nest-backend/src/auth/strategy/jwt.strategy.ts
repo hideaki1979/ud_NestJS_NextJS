@@ -35,9 +35,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       throw new UnauthorizedException('該当するユーザーが存在しません');
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const { hashedPassword, ...userWithoutPassword } = user;
-    // return userWithoutPassword;
     const { id, email, nickname, createdAt, updatedAt } = user;
     return { id, email, nickname, createdAt, updatedAt };
   }
