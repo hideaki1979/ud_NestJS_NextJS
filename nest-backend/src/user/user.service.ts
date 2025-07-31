@@ -20,10 +20,6 @@ export class UserService {
       },
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const { hashedPassword, ...userWithoutPassword } = user;
-    // return userWithoutPassword;
-
     const { id, email, nickname, createdAt, updatedAt } = user;
     return { id, email, nickname, createdAt, updatedAt };
   }
