@@ -1,16 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { User } from 'generated/prisma';
+import { UserPayload } from 'src/types/jwt.type';
 
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async updateUser(
-    userId: number,
-    dto: UpdateUserDto,
-  ): Promise<Omit<User, 'hashedPassword'>> {
+  async updateUser(userId: number, dto: UpdateUserDto): Promise<UserPayload> {
     const user = await this.prisma.user.update({
       where: {
         id: userId,

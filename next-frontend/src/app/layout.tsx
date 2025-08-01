@@ -31,11 +31,13 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col items-center justify-center`}
       >
-        <Providers>
-          {children}
-        </Providers>
+        <main className="flex w-screen flex-1 flex-col items-center justify-center">
+          <Providers>
+            {children}
+          </Providers>
+        </main>
       </body>
     </html>
   );
