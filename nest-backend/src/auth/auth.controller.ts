@@ -44,7 +44,7 @@ export class AuthController {
     res.cookie('access_token', jwt.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'none',
+      sameSite: 'lax',
       path: '/',
     });
 
@@ -57,7 +57,7 @@ export class AuthController {
     res.clearCookie('access_token', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'none',
+      sameSite: 'lax',
       path: '/',
     });
 
