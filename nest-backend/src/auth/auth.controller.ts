@@ -54,7 +54,12 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('logout')
   logout(@Req() req: Request, @Res({ passthrough: true }) res: Response): Msg {
-    res.clearCookie('access_token');
+    res.clearCookie('access_token', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'none',
+      path: '/',
+    });
 
     return {
       message: 'SignOut OK',

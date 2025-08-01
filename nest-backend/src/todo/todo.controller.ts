@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { TodoService } from './todo.service';
-import { Task } from 'generated/prisma';
+import { Task } from '@prisma/client';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { CurrentUser } from 'decorators/current-user.decorator';
