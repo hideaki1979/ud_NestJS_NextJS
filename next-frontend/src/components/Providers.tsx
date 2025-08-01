@@ -26,9 +26,9 @@ export function Providers({ children }: ProvidersProps) {
             <MantineProvider>
                 <CsrfProvider>
                     {children}
+                    <ReactQueryDevtools initialIsOpen={false} />
                 </CsrfProvider>
             </MantineProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     )
 }
