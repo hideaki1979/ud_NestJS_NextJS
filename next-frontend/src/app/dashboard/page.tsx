@@ -4,12 +4,10 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
     return {
         title: 'タスクダッシュボード',
-        description: 'ログインまたはサインアップしてアカウントにアクセス'
+        description: 'タスクを管理するためのダッシュボードページです。'
     }
 }
 
-const DashBoardPage = () => {
+export default function DashBoardPage() {
     return <DashBoard />
 }
-
-export default DashBoardPage

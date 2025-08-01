@@ -7,8 +7,12 @@ import { ArrowRightEndOnRectangleIcon } from "@heroicons/react/24/solid"
 const DashBoard = () => {
     const router = useRouter()
     const logout = async () => {
-        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
-        router.push('/auth')
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`)
+            router.push('/auth')
+        } catch (err) {
+            console.error('ログアウトに失敗しました', err)
+        }
     }
 
     return (

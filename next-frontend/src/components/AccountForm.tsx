@@ -13,6 +13,7 @@ const AccountForm = () => {
     const router = useRouter()
     const [isRegister, setIsRegister] = useState(false)
     const [error, setError] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     const form = useForm<AuthFormType>({
         initialValues: {
@@ -22,7 +23,7 @@ const AccountForm = () => {
         validate: {
             email: (value) => {
                 if (!value) return 'メールアドレスは必須です';
-                if (!/^\S+@\S+$/.test(value)) return 'メールアドレス形式で入力してください';
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'メールアドレス形式で入力してください';
                 return null;
             },
             password: (value) => {
@@ -34,17 +35,17 @@ const AccountForm = () => {
     })
 
     const handleSubmit = async () => {
+        setIsLoading(true)
+        setError('')
+        const payload = {
+            email: form.values.email,
+            password: form.values.password
+        }
         try {
             if (isRegister) {
-                await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, {
-                    email: form.values.email,
-                    password: form.values.password
-                })
+                await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, payload)
             }
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
-                email: form.values.email,
-                password: form.values.password
-            })
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, payload)
             form.reset()
             router.push('/dashboard')
         } catch (err) {
@@ -53,6 +54,8 @@ const AccountForm = () => {
             } else {
                 setError('予期しないエラーが発生しました');
             }
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -103,11 +106,13 @@ const AccountForm = () => {
                     >
                         {isRegister
                             ? 'Have an Account? login'
-                            : "Don't have an account? Resister"}
+                            : "Don't have an account? Register"}
                     </Anchor>
                     <Button
                         color='cyan'
                         type='submit'
+                        loading={isLoading}
+                        disabled={isLoading}
                     >
                         {isRegister ? 'Register' : 'Login'}
                     </Button>
