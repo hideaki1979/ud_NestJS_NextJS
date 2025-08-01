@@ -12,7 +12,7 @@ export class UserController {
 
   @Get()
   getLoginUser(@Req() req: Request): UserPayload {
-    return req.user;
+    return req.user!;
   }
 
   @Patch()
@@ -20,6 +20,6 @@ export class UserController {
     @Req() req: Request,
     @Body() dto: UpdateUserDto,
   ): Promise<UserPayload> {
-    return this.userService.updateUser(req.user.id, dto);
+    return this.userService.updateUser(req.user!.id, dto);
   }
 }
