@@ -1,9 +1,9 @@
-import { Controller, Get, Req, UseGuards, Patch, Body } from '@nestjs/common';
+import { Controller, Get, UseGuards, Patch, Body } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from '@nestjs/passport';
-import { Request } from 'express';
 import { UserPayload } from 'src/types/jwt.type';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CurrentUser } from 'decorators/current-user.decorator';
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('user')
@@ -11,15 +11,15 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  getLoginUser(@Req() req: Request): UserPayload {
-    return req.user;
+  getLoginUser(@CurrentUser() user: UserPayload): UserPayload {
+    return user;
   }
 
   @Patch()
   updateUser(
-    @Req() req: Request,
+    @CurrentUser() user: UserPayload,
     @Body() dto: UpdateUserDto,
   ): Promise<UserPayload> {
-    return this.userService.updateUser(req.user.id, dto);
+    return this.userService.updateUser(user.id, dto);
   }
 }
