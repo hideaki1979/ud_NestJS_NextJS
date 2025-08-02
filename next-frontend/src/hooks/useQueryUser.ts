@@ -1,3 +1,4 @@
+import { QUERY_KEYS } from "@/constants/queryKeys"
 import { UserPayload } from "@/types"
 import { useQuery } from "@tanstack/react-query"
 import axios, { AxiosError } from "axios"
@@ -13,7 +14,7 @@ const getUser = async () => {
 export const useQueryUser = () => {
     const router = useRouter()
     return useQuery<UserPayload>({
-        queryKey: ['user'],
+        queryKey: [QUERY_KEYS.USER],
         queryFn: getUser,
         staleTime: 300000,   // 5分
         onError: (err) => {
