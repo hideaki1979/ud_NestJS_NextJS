@@ -1,5 +1,7 @@
+import { QUERY_KEYS } from "@/constants/queryKeys"
 import useStore from "@/store/store"
-import { EditedTask, TaskPayload, UserPayload } from "@/types"
+import { EditedTask, TaskPayload } from "@/types"
+import { handleAuthError } from "@/utils/authUtils"
 import { Task } from "@prisma/client"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import axios, { AxiosError } from "axios"
@@ -23,15 +25,13 @@ export const useMutateTask = () => {
             onSuccess: (res) => {
                 const previousTodos = queryClient.getQueryData<Task[]>(['tasks'])
                 if (previousTodos) {
-                    queryClient.setQueryData(['tasks'], [res, ...previousTodos])
+                    queryClient.setQueryData([QUERY_KEYS.TASKS], [res, ...previousTodos])
                 }
                 reset()
             },
             onError: (err: AxiosError) => {
                 reset()
-                if (err.response?.status === 401 || err.response?.status === 403) {
-                    router.push('/auth')
-                }
+                handleAuthError(err, router)
             }
         }
     )
@@ -46,19 +46,17 @@ export const useMutateTask = () => {
         },
         {
             onSuccess: (res, variables) => {
-                const previousTodos = queryClient.getQueryData<Task[]>(['tasks'])
+                const previousTodos = queryClient.getQueryData<Task[]>([QUERY_KEYS.TASKS])
                 if (previousTodos) {
                     queryClient.setQueryData(
-                        ['tasks'], previousTodos.map((task) => (task.id === res.id ? res : task))
+                        [QUERY_KEYS.TASKS], previousTodos.map((task) => (task.id === res.id ? res : task))
                     )
                 }
                 reset()
             },
             onError: (err: AxiosError) => {
                 reset()
-                if (err.response?.status === 401 || err.response?.status === 403) {
-                    router.push('/auth')
-                }
+                handleAuthError(err, router)
             }
         }
     )
@@ -72,19 +70,17 @@ export const useMutateTask = () => {
         {
             // variables: 削除したタスクのID
             onSuccess: (_, variables) => {
-                const previousTodos = queryClient.getQueryData<Task[]>(['tasks'])
+                const previousTodos = queryClient.getQueryData<Task[]>([QUERY_KEYS.TASKS])
                 if (previousTodos) {
                     queryClient.setQueryData(
-                        ['tasks'], previousTodos.filter((task) => (task.id !== variables))
+                        [QUERY_KEYS.TASKS], previousTodos.filter((task) => (task.id !== variables))
                     )
                 }
                 reset()
             },
             onError: (err: AxiosError) => {
                 reset()
-                if (err.response?.status === 401 || err.response?.status === 403) {
-                    router.push('/auth')
-                }
+                handleAuthError(err, router)
             }
         }
     )
