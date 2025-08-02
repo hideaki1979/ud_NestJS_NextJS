@@ -16,3 +16,8 @@ export interface UserPayload {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export type TaskPayload = {
+    title: string;
+    description?: string | null;
+}
