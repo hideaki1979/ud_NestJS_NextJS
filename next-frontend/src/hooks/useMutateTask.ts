@@ -23,7 +23,7 @@ export const useMutateTask = () => {
         },
         {
             onSuccess: (res) => {
-                const previousTodos = queryClient.getQueryData<Task[]>(['tasks'])
+                const previousTodos = queryClient.getQueryData<Task[]>([QUERY_KEYS.TASKS])
                 if (previousTodos) {
                     queryClient.setQueryData([QUERY_KEYS.TASKS], [res, ...previousTodos])
                 }
