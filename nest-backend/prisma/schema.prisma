@@ -31,4 +31,6 @@ model Task {
   updatedAt   DateTime @updatedAt @db.Timestamp(0)
   userId      Int
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
