@@ -15,25 +15,30 @@ export const TaskItem: FC<EditedTask> = ({
 
     return (
         <List.Item>
-            <div className="flex float-left mr-10">
-                <PencilIcon
-                    className="mx-1 h-5 w-5 cursor-pointer text-blue-500"
-                    onClick={() => {
-                        update({
-                            id,
-                            title,
-                            description
-                        })
-                    }}
-                />
-                <TrashIcon
-                    className="h-5 w-5 cursor-pointer text-blue-500"
-                    onClick={() => {
-                        deleteTaskMutation.mutate(id)
-                    }}
-                />
+            <div className="flex items-center">
+                <div className="flex mr-10">
+                    <PencilIcon
+                        aria-label="タスクを編集"
+                        className="mx-1 h-5 w-5 cursor-pointer text-blue-500"
+                        onClick={() => {
+                            update({
+                                id,
+                                title,
+                                description
+                            })
+                        }}
+                    />
+                    <TrashIcon
+                        aria-label="タスクを削除"
+                        className="h-5 w-5 cursor-pointer text-blue-500"
+                        onClick={() => {
+                            if (window.confirm("タスクを削除しますか？"))
+                                deleteTaskMutation.mutate(id)
+                        }}
+                    />
+                </div>
+                <span>{title}</span>
             </div>
-            <span>{title}</span>
         </List.Item>
     )
 }
