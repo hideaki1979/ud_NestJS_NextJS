@@ -68,6 +68,7 @@ TaskManager Frontend は、直感的で使いやすいタスク管理インタ�
 ## 処理フロー
 
 ```mermaid
+%%{init: {"theme":"default"}}%%
 sequenceDiagram
     participant U as User
     participant UI as Frontend UI
@@ -192,6 +193,25 @@ graph TB
 
     TASK_FORM --> SANITIZE
     MUTATE_TASK --> AUTH_UTILS
+
+    style AUTH fill:#f3e5f5,color:#111
+    style DASH fill:#f3e5f5,color:#111
+    style HOME fill:#f3e5f5,color:#111
+    style LAYOUT fill:#e8f5e8,color:#111
+    style PROVIDERS fill:#e8f5e8,color:#111
+    style ACCOUNT fill:#fff3e0,color:#111
+    style CSRF fill:#fff3e0,color:#111
+    style DASHBOARD fill:#e1f5fe,color:#111
+    style USER fill:#e1f5fe,color:#111
+    style TASK_FORM fill:#e1f5fe,color:#111
+    style TASK_LIST fill:#e1f5fe,color:#111
+    style TASK_ITEM fill:#e1f5fe,color:#111
+    style QUERY_TASKS fill:#fce4ec,color:#111
+    style QUERY_USER fill:#fce4ec,color:#111
+    style MUTATE_TASK fill:#fce4ec,color:#111
+    style STORE fill:#f1f8e9,color:#111
+    style SANITIZE fill:#f1f8e9,color:#111
+    style AUTH_UTILS fill:#f1f8e9,color:#111
 ```
 
 ## 環境構築手順
