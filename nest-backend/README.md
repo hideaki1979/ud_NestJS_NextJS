@@ -78,7 +78,7 @@ PATCH /user            # ユーザー情報更新
 ## 処理フロー
 
 ```mermaid
-%%{init: {"theme":"default", "sequence": {"arrowHeadColor":"#fff", "messageFontColor":"#fff", "messageFontSize":"12"}}}%%
+%%{init: {"theme":"dark", "sequence": {"arrowHeadColor":"#fff", "messageFontColor":"#fff", "messageFontSize":"12"}}}%%
 sequenceDiagram
     participant C as Client
     participant A as Auth Controller
