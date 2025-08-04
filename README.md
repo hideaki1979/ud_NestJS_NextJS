@@ -61,8 +61,7 @@ graph TB
     U --> UI
     UI --> STATE
     STATE --> QUERY
-    QUERY <--> AUTH
-    AUTH --> API
+    QUERY <--> API
     API --> VALID
     VALID --> PRISMA
     PRISMA <--> DB
@@ -80,7 +79,7 @@ graph TB
 - 👤 ユーザープロフィール管理
 - 🛡️ セキュアな認証・認可
 - 📱 レスポンシブデザイン
-- 🔄 リアルタイムデータ同期
+- 🔄 自動データ更新
 
 ## 技術スタック
 

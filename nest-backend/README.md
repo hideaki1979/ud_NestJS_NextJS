@@ -39,9 +39,9 @@ TaskManager Backend は、モダンなタスク管理アプリケーションの
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ---------------------------- |
 | **言語**             | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="20" height="20"/> TypeScript      | 5.7.3           | 型安全性の確保               |
 | **フレームワーク**   | <img src="https://nestjs.com/img/logo-small.svg" width="20" height="20"/> NestJS                                                          | 11.0.1          | モジュラーなバックエンド構築 |
-| **データベース**     | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="20" height="20"/> PostgreSQL      | -               | リレーショナルデータ管理     |
+| **データベース**     | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="20" height="20"/> PostgreSQL      | 16.x               | リレーショナルデータ管理     |
 | **ORM**              | <img src="https://avatars.githubusercontent.com/u/17219288?s=200&v=4" width="20" height="20"/> Prisma                                     | 6.13.0          | 型安全なデータベースアクセス |
-| **認証**             | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="20" height="20"/> JWT + Passport          | 11.0.0 / 11.0.5 | セキュアな認証システム       |
+| **認証**             | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="20" height="20"/> JWT + Passport  (@nestjs/jwt / @nestjs/passport) | 10.3.0 / 10.0.3  | セキュアな認証システム       |
 | **パスワード暗号化** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="20" height="20"/> bcrypt                  | 6.0.0           | パスワードハッシュ化         |
 | **バリデーション**   | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="20" height="20"/> class-validator | 0.14.2          | 入力データ検証               |
 | **セキュリティ**     | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="20" height="20"/> csrf-csrf               | 4.0.3           | CSRF 攻撃防止                |
@@ -196,7 +196,7 @@ $ cp .env.example .env
 DATABASE_URL="postgresql://username:password@localhost:5432/taskmanager"
 
 # JWT 設定
-JWT_SECRET="your-jwt-secret-key"
+JWT_SECRET="your-super-strong-jwt-secret-key-for-production"
 
 # 環境設定
 NODE_ENV="development"
@@ -269,4 +269,4 @@ $ npx prisma studio
 
 ## ライセンス
 
-このプロジェクトは **UNLICENSED** です。
+このプロジェクトは **MIT ライセンス** の下で公開されています。

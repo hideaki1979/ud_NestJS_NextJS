@@ -102,7 +102,7 @@ sequenceDiagram
     T->>RQ: createTaskMutation
     RQ->>API: POST /todo
     API-->>RQ: 新規タスク
-    RQ->>RQ: Optimistic Update
+    RQ->>RQ: キャッシュ更新
     RQ->>UI: UI 即座に更新
 
     U->>T: タスク編集
