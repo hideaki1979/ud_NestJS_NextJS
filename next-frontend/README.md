@@ -68,7 +68,7 @@ TaskManager Frontend は、直感的で使いやすいタスク管理インタ�
 ## 処理フロー
 
 ```mermaid
-%%{init: {"theme":"default"}}%%
+%%{init: {"theme":"default", "sequence": {"arrowHeadColor":"#fff", "messageFontColor":"#fff", "messageFontSize":"12"}}}%%
 sequenceDiagram
     participant U as User
     participant UI as Frontend UI
