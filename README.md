@@ -66,10 +66,10 @@ graph TB
     VALID --> PRISMA
     PRISMA <--> DB
 
-    style U fill:#e1f5fe
-    style UI fill:#f3e5f5
-    style AUTH fill:#fff3e0
-    style DB fill:#e8f5e8
+    style U fill:#e1f5fe,color:#111
+    style UI fill:#f3e5f5,color:#111
+    style AUTH fill:#fff3e0,color:#111
+    style DB fill:#e8f5e8,color:#111
 ```
 
 ## 主な機能
