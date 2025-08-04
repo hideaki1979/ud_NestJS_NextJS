@@ -1,7 +1,7 @@
 # TaskManager Frontend
 
 <p align="center">
-  <img src="https://nextjs.org/static/favicon/favicon-32x32.png" width="64" height="64" alt="Next.js Logo" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" width="64" height="64" alt="Next.js Logo" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="64" height="64" alt="React Logo" />
 </p>
 
